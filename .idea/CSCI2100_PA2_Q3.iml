@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/2.3.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/2.16.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/2.19.c" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
