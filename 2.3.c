@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <signal.h>
 
 #define BUFFERSIZE 100
 
@@ -68,7 +67,7 @@ Node *findNode(int sid, int courseCode) {
         if (nextNode->courseCode == courseCode) {
             return nextNode;
         } else {
-            nextNode = nextCourse(nextNode);
+            nextNode = nextStudent(nextNode);
         }
     } while (nextNode != NULL);
     return NULL;
@@ -163,14 +162,15 @@ Node *addNode(int sid, int courseCode) {
                     break;
                 }
             }
-            if (!linked && nextSNode->next_s_ptr == NULL && nextSNode->prev_s_ptr != NULL) {
+            if (!linked && nextSNode->next_s_ptr == NULL && nextSNode->prev_s_ptr != NULL &&
+                nextSNode->courseCode > courseCode) {
                 targetNode->prev_s_ptr = nextSNode->prev_s_ptr;
                 targetNode->next_s_ptr = nextSNode;
                 nextSNode->prev_s_ptr->next_s_ptr = targetNode;
                 nextSNode->prev_s_ptr = targetNode;
                 linked = 1;
             }
-            if (!linked) {
+            if (!linked && nextSNode->courseCode < courseCode) {
                 nextSNode->next_s_ptr = targetNode;
                 targetNode->prev_s_ptr = nextSNode;
             }
@@ -209,14 +209,14 @@ Node *addNode(int sid, int courseCode) {
                     break;
                 }
             }
-            if (!linked && nextCNode->next_c_ptr == NULL && nextCNode->prev_c_ptr != NULL) {
+            if (!linked && nextCNode->next_c_ptr == NULL && nextCNode->prev_c_ptr != NULL && nextCNode->sid > sid) {
                 targetNode->prev_c_ptr = nextCNode->prev_c_ptr;
                 targetNode->next_c_ptr = nextCNode;
                 nextCNode->prev_c_ptr->next_c_ptr = targetNode;
                 nextCNode->prev_c_ptr = targetNode;
                 linked = 1;
             }
-            if (!linked) {
+            if (!linked && nextCNode->sid < sid) {
                 nextCNode->next_c_ptr = targetNode;
                 targetNode->prev_c_ptr = nextCNode;
             }
@@ -280,14 +280,14 @@ void printCourse(int courseCode) {
     return;
 }
 
-//TODO:remove debug
-void sighandler(int sig) {
+//debug
+/*void sighandler(int sig) {
     while (1);
-}
+}*/
 
 int main() {
-    //TODO:remove debug
-    signal(SIGSEGV, sighandler);
+    // debug
+    //signal(SIGSEGV, sighandler);
 
     char buffer[BUFFERSIZE];
     while (fgets(buffer, BUFFERSIZE, stdin)) /* break with ^D or ^Z */
