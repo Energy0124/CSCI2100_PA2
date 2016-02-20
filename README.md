@@ -2,6 +2,9 @@
 CUHK 2016 Spring CSCI2100A Programming Assignment 2 
 
 Status:
-2.3: passed
-2.16: passed
-2.19: wrong answer
+
+- 2.3: passed
+
+- 2.16: passed
+
+- 2.19: wrong answer
