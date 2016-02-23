@@ -71,7 +71,7 @@ int comparePos(int d[], int size, int a, int b) {
 */
 int getPos(int d[], int size, int a) {
     int i = 0, al = -1;
-    for (i = 0; i < size; i++) {
+    for (i = 0; i < size; ++i) {
         if (d[i] == a) {
             al = i;
         }
@@ -85,6 +85,9 @@ int getPos(int d[], int size, int a) {
 
 }
 
+/*
+ * TODO: Rewrite Q3V3
+ * */
 
 int main() {
     int t = 0;
@@ -105,11 +108,25 @@ int main() {
 
         Stack *s1_ptr = &s1;
         Stack *s2_ptr = &s2;
-
         int output[MAXSIZE];
-        int oh = 0;
-        int th = 0;
-        int k = 1;
+        int step[2 * MAXSIZE];
+        int outputHead = 0;
+        int targetHead = 0;
+        int inputHead = 1;
+        while (targetHead != n) {
+            if (inputHead == target[targetHead]) {
+                printf("S");
+                targetHead++;
+                output[outputHead] = inputHead;
+                outputHead++;
+                inputHead++;
+
+
+            } else if (!isEmpty(s1_ptr) && peek(s1_ptr) == target[targetHead]) {
+
+            }
+        }
+        /*int k = 1;
         for (k = 1; k <= n; k++) {
 
             int f1 = 0, f2 = 0;
@@ -140,10 +157,8 @@ int main() {
                 }
             }
             if (!pushed) {
-                if (isEmpty(s1_ptr)) {
+                if (isEmpty(s1_ptr) && isEmpty(s2_ptr)) {
                     push(s1_ptr, k);
-                } else if (isEmpty(s2_ptr)) {
-                    push(s2_ptr, k);
                 } else {
                     int s1l = -1, s2l = -1;
                     if (peek(s1_ptr) >= 0) {
@@ -153,39 +168,19 @@ int main() {
                         s2l = getPos(target, n, peek(s2_ptr));
                     }
                     int kl = getPos(target, n, k);
-                    int canPush1 = 0, canPush2 = 0;
-
                     if (kl < s1l) {
-                        //  push(s1_ptr, k);
-                        canPush1 = 1;
-                    }
-                    if (kl < s2l) {
-                        //push(s2_ptr, k);
-                        canPush2 = 1;
-                    }
-                    if (canPush1 && canPush2) {
-                        if (s1l < s2l) {
-                            push(s1_ptr, k);
-                        } else {
-                            push(s2_ptr, k);
-                        }
-                    } else if (canPush1 && !canPush2) {
                         push(s1_ptr, k);
-                    } else if (!canPush1 && canPush2) {
+                    } else if (kl < s2l) {
+                        push(s2_ptr, k);
+                    } else if (s1l < 0 && kl > s2l) {
+                        push(s1_ptr, k);
+                    } else if (s2l < 0 && kl > s1l) {
                         push(s2_ptr, k);
                     } else {
                         failed = 1;
                         break;
                     }
-                    /* else if (s1l < 0 && kl > s2l) {
-                    push(s1_ptr, k);
-                } else if (s2l < 0 && kl > s1l) {
-                    push(s2_ptr, k);
-                }else {
-                    failed = 1;
-                    break;
-                }*/
-                    /*
+                    *//*
                     int s1l = getPos(target, n, peek(s1_ptr));
                     int s2l = getPos(target, n, peek(s2_ptr));
                     int kl = getPos(target, n, k);
@@ -207,27 +202,27 @@ int main() {
                     if (f1 && f2) {
                         failed = 1;
                         break;
-                    }*/
+                    }*//*
                 }
             }
-        }
+        }*/
 
         if (failed) {
             printf("No\n");
             continue;
         }
 
-        int m = th;
-        for (m = th; m < n; m++) {
-            if (peek(s1_ptr) == target[th]) {
-                output[oh] = pop(s1_ptr);
-                oh++;
-                th++;
+        int m = targetHead;
+        for (m = targetHead; m < n; m++) {
+            if (peek(s1_ptr) == target[targetHead]) {
+                output[outputHead] = pop(s1_ptr);
+                outputHead++;
+                targetHead++;
 
-            } else if (peek(s2_ptr) == target[th]) {
-                output[oh] = pop(s2_ptr);
-                oh++;
-                th++;
+            } else if (peek(s2_ptr) == target[targetHead]) {
+                output[outputHead] = pop(s2_ptr);
+                outputHead++;
+                targetHead++;
 
             } else {
                 failed = 1;
@@ -235,7 +230,7 @@ int main() {
             }
         }
 
-        if (th == n) {
+        if (targetHead == n) {
             printf("Yes\n");
         } else {
             printf("No\n");

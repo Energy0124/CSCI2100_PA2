@@ -2,10 +2,12 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/2.3.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/2.16.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2.3.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/2.19.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Q3V3.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Q3V2.c" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
