@@ -7,4 +7,4 @@ Status:
 
 - 2.16: passed
 
-- 2.19: wrong answer
+- 2.19: passed
